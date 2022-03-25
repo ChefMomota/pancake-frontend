@@ -1,4 +1,4 @@
-import { BigNumber } from '@ethersproject/bignumber'
+import { BigNumber, FixedNumber } from '@ethersproject/bignumber'
 import { WeiPerEther } from '@ethersproject/constants'
 import { BLOCKS_PER_YEAR } from 'config'
 import cakeVaultV2Abi from 'config/abi/cakeVaultV2.json'
@@ -17,9 +17,13 @@ const PRECISION_FACTOR = BigNumber.from('1000000000000')
 
 const getFlexibleApy = (
   totalCakePoolEmissionPerYear: BigNumber,
-  pricePerFullShare: BigNumber,
-  totalShares: BigNumber,
-) => totalCakePoolEmissionPerYear.div(pricePerFullShare).mul(WeiPerEther).div(totalShares)
+  pricePerFullShare: FixedNumber,
+  totalShares: FixedNumber,
+) =>
+  FixedNumber.from(totalCakePoolEmissionPerYear.mul(WeiPerEther))
+    .divUnsafe(pricePerFullShare)
+    .divUnsafe(totalShares)
+    .mulUnsafe(FixedNumber.from(100))
 
 const getBoostFactor = (
   boostWeight: BigNumber,
@@ -28,15 +32,16 @@ const getBoostFactor = (
   precisionFactor: BigNumber,
 ) => boostWeight.mul(Math.max(duration, 0)).div(durationFactor).div(precisionFactor)
 
-const getLockedApy = (flexibleApy: number, boostFactor: BigNumber) => boostFactor.add(1).mul(flexibleApy)
+const getLockedApy = (flexibleApy: string, boostFactor: number) =>
+  FixedNumber.from(flexibleApy).mulUnsafe(FixedNumber.from(1 + boostFactor))
 
 const masterChefAddress = getMasterChefAddress()
 const cakeVaultAddress = getCakeVaultAddress()
 
 export function useVaultApy({ duration }: { duration: number }) {
   const { totalShares = BIG_ZERO, pricePerFullShare = BIG_ZERO } = useCakeVault()
-  const totalSharesAsEtherBN = useMemo(() => BigNumber.from(totalShares.toString()), [totalShares])
-  const pricePerFullShareAsEtherBN = useMemo(() => BigNumber.from(pricePerFullShare.toString()), [pricePerFullShare])
+  const totalSharesAsEtherBN = useMemo(() => FixedNumber.from(totalShares.toString()), [totalShares])
+  const pricePerFullShareAsEtherBN = useMemo(() => FixedNumber.from(pricePerFullShare.toString()), [pricePerFullShare])
 
   const { data: totalCakePoolEmissionPerYear } = useSWRImmutable('masterChef-total-cake-pool-emission', async () => {
     const calls = [
@@ -76,8 +81,8 @@ export function useVaultApy({ duration }: { duration: number }) {
   const flexibleApy = useMemo(
     () =>
       totalCakePoolEmissionPerYear &&
-      pricePerFullShareAsEtherBN.gt(0) &&
-      getFlexibleApy(totalCakePoolEmissionPerYear, pricePerFullShareAsEtherBN, totalSharesAsEtherBN).toNumber(),
+      !pricePerFullShareAsEtherBN.isZero() &&
+      getFlexibleApy(totalCakePoolEmissionPerYear, pricePerFullShareAsEtherBN, totalSharesAsEtherBN).toString(),
     [pricePerFullShareAsEtherBN, totalCakePoolEmissionPerYear, totalSharesAsEtherBN],
   )
 
@@ -91,7 +96,7 @@ export function useVaultApy({ duration }: { duration: number }) {
   )
 
   const lockedApy = useMemo(() => {
-    return flexibleApy && getLockedApy(flexibleApy, boostFactor).toNumber()
+    return flexibleApy && getLockedApy(flexibleApy, boostFactor.toNumber()).toString()
   }, [boostFactor, flexibleApy])
 
   return {

@@ -1,4 +1,4 @@
-import { Flex, Text } from '@pancakeswap/uikit'
+import { Flex, Text, Skeleton } from '@pancakeswap/uikit'
 import { BigNumber } from '@ethersproject/bignumber'
 import { LightGreyCard } from 'components/Card'
 import { useTranslation } from 'contexts/Localization'
@@ -21,13 +21,21 @@ export const StakingApy = memo(() => {
         <Text color="textSubtle" textTransform="uppercase" bold fontSize="12px">
           {t('Flexible staking')} APY:
         </Text>
-        <Balance fontSize="16px" value={flexibleApy} decimals={2} unit="%" />
+        {flexibleApy ? (
+          <Balance fontSize="16px" value={parseFloat(flexibleApy)} decimals={2} unit="%" />
+        ) : (
+          <Skeleton width="80px" height="16px" />
+        )}
       </Flex>
       <Flex alignItems="center" justifyContent="space-between">
         <Text color="textSubtle" textTransform="uppercase" bold fontSize="12px">
           {t('Locked staking')} APY:
         </Text>
-        <Balance fontSize="16px" value={lockedApy} decimals={2} unit="%" />
+        {lockedApy ? (
+          <Balance fontSize="16px" value={parseFloat(lockedApy)} decimals={2} unit="%" />
+        ) : (
+          <Skeleton width="80px" height="16px" />
+        )}
       </Flex>
     </LightGreyCard>
   )

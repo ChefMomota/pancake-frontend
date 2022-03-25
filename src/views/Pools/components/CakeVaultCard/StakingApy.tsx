@@ -5,10 +5,11 @@ import { useTranslation } from 'contexts/Localization'
 import { useVaultApy } from 'hooks/useVaultApy'
 import { useVaultMaxDuration } from 'hooks/useVaultMaxDuration'
 import Balance from 'components/Balance'
+import { memo } from 'react'
 
 const DEFAULT_MAX_DURATION = BigNumber.from('31536000')
 
-export const StakingApy = () => {
+export const StakingApy = memo(() => {
   const { t } = useTranslation()
 
   const maxLockDuration = useVaultMaxDuration()
@@ -30,4 +31,4 @@ export const StakingApy = () => {
       </Flex>
     </LightGreyCard>
   )
-}
+})

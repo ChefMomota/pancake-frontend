@@ -17,8 +17,8 @@ export function useVaultApy({ duration }: { duration: number }) {
   const masterChef = useMasterchef(false)
   const cakeVaultContract = useCakeVaultContract(false)
   const { totalShares = BIG_ZERO, pricePerFullShare = BIG_ZERO } = useCakeVault()
-  const totalSharesAsEtherBN = BigNumber.from(totalShares.toString())
-  const pricePerFullShareAsEtherBN = BigNumber.from(pricePerFullShare.toString())
+  const totalSharesAsEtherBN = useMemo(() => BigNumber.from(totalShares.toString()), [totalShares])
+  const pricePerFullShareAsEtherBN = useMemo(() => BigNumber.from(pricePerFullShare.toString()), [pricePerFullShare])
 
   const { data: totalCakePoolEmissionPerYear } = useSWRImmutable('masterChef-total-cake-pool-emission', async () => {
     const specialFarmsPerBlock = await masterChef.cakePerBlock(false)
@@ -55,7 +55,10 @@ export function useVaultApy({ duration }: { duration: number }) {
   const durationFactor: BigNumber = data?.[1][0] || DURATION_FACTOR
   const precisionFactor: BigNumber = data?.[2][0] || PRECISION_FACTOR
 
-  const boostFactor = boostWeight.mul(Math.max(duration, 0)).div(durationFactor).div(precisionFactor)
+  const boostFactor = useMemo(
+    () => boostWeight.mul(Math.max(duration, 0)).div(durationFactor).div(precisionFactor),
+    [boostWeight, duration, durationFactor, precisionFactor],
+  )
 
   const lockedApy = useMemo(() => {
     return (

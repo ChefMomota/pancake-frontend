@@ -3,7 +3,7 @@ import { WeiPerEther } from '@ethersproject/constants'
 import { BLOCKS_PER_YEAR } from 'config'
 import cakeVaultV2Abi from 'config/abi/cakeVaultV2.json'
 import masterChefAbi from 'config/abi/masterchef.json'
-import { useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 import { useCakeVault } from 'state/pools/hooks'
 import useSWRImmutable from 'swr/immutable'
 import { getCakeVaultAddress, getMasterChefAddress } from 'utils/addressHelpers'
@@ -38,7 +38,7 @@ const getLockedApy = (flexibleApy: string, boostFactor: number) =>
 const masterChefAddress = getMasterChefAddress()
 const cakeVaultAddress = getCakeVaultAddress()
 
-export function useVaultApy({ duration }: { duration: number }) {
+export function useVaultApy({ duration = 31536000 }: { duration?: number }) {
   const { totalShares = BIG_ZERO, pricePerFullShare = BIG_ZERO } = useCakeVault()
   const totalSharesAsEtherBN = useMemo(() => FixedNumber.from(totalShares.toString()), [totalShares])
   const pricePerFullShareAsEtherBN = useMemo(() => FixedNumber.from(pricePerFullShare.toString()), [pricePerFullShare])
@@ -82,6 +82,7 @@ export function useVaultApy({ duration }: { duration: number }) {
     () =>
       totalCakePoolEmissionPerYear &&
       !pricePerFullShareAsEtherBN.isZero() &&
+      !totalSharesAsEtherBN.isZero() &&
       getFlexibleApy(totalCakePoolEmissionPerYear, pricePerFullShareAsEtherBN, totalSharesAsEtherBN).toString(),
     [pricePerFullShareAsEtherBN, totalCakePoolEmissionPerYear, totalSharesAsEtherBN],
   )
@@ -102,5 +103,14 @@ export function useVaultApy({ duration }: { duration: number }) {
   return {
     flexibleApy,
     lockedApy,
+    getLockedApy: useCallback(
+      (adjustDuration: number) =>
+        flexibleApy &&
+        getLockedApy(
+          flexibleApy,
+          getBoostFactor(boostWeight, adjustDuration, durationFactor, precisionFactor).toNumber(),
+        ).toString(),
+      [boostWeight, durationFactor, flexibleApy, precisionFactor],
+    ),
   }
 }

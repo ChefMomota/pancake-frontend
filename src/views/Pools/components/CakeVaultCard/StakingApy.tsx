@@ -1,5 +1,4 @@
 import { Flex, Text, Skeleton } from '@pancakeswap/uikit'
-import { BigNumber } from '@ethersproject/bignumber'
 import { LightGreyCard } from 'components/Card'
 import { useTranslation } from 'contexts/Localization'
 import { useVaultApy } from 'hooks/useVaultApy'
@@ -7,13 +6,11 @@ import { useVaultMaxDuration } from 'hooks/useVaultMaxDuration'
 import Balance from 'components/Balance'
 import { memo } from 'react'
 
-const DEFAULT_MAX_DURATION = BigNumber.from('31536000')
-
 export const StakingApy = memo(() => {
   const { t } = useTranslation()
 
   const maxLockDuration = useVaultMaxDuration()
-  const { flexibleApy, lockedApy } = useVaultApy({ duration: (maxLockDuration || DEFAULT_MAX_DURATION).toNumber() })
+  const { flexibleApy, lockedApy } = useVaultApy({ duration: maxLockDuration?.toNumber() })
 
   return (
     <LightGreyCard>

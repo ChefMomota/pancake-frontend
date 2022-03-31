@@ -54,8 +54,8 @@ describe('cakePool', () => {
       getVaultPosition({
         userShares: new BigNumber('1'),
         locked: true,
-        lockEndTime: (addWeeks(new Date(NOW), 1).getTime() / 1000).toString(),
+        lockEndTime: (addWeeks(new Date(NOW), -1).getTime() / 1000).toString(),
       }),
-    ).not.toBe(VaultPosition.LockedEnd)
+    ).not.toBe(VaultPosition.Locked)
   })
 })

@@ -36,7 +36,6 @@ const fetchVaultUserV1 = async (account: string) => {
       cakeAtLastUserAction: new BigNumber(userContractResponse.cakeAtLastUserAction.toString()).toJSON(),
     }
   } catch (error) {
-    console.log('error', error)
     return {
       isLoading: true,
       userShares: null,

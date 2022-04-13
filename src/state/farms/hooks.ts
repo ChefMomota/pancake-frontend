@@ -47,7 +47,7 @@ export const usePollCoreFarmData = () => {
   useFastRefreshEffect(() => {
     // TODO: revert this
     // dispatch(fetchFarmsPublicDataAsync(coreFarmPIDs))
-    dispatch(fetchFarmsPublicDataAsync([0, 2]))
+    dispatch(fetchFarmsPublicDataAsync([1, 2]))
   }, [dispatch])
 }
 
@@ -92,7 +92,7 @@ export const usePriceCakeBusd = (): BigNumber => {
   // TODO: revert this
   // return useSelector(priceCakeFromPidSelector)
 
-  const cakeBnbFarm = useFarmFromPid(0)
+  const cakeBnbFarm = useFarmFromPid(1)
 
   const cakePriceBusdAsString = cakeBnbFarm.tokenPriceBusd
 

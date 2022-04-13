@@ -13,8 +13,11 @@ import cakeVaultAbi from 'config/abi/cakeVault.json'
 import { FAST_INTERVAL } from 'config/constants'
 import { VaultKey } from 'state/types'
 
-export const ifoPoolV1Contract = '0x1B2A2f6ed4A1401E8C73B4c2B6172455ce2f78E8'
-export const cakeVaultAddress = '0xa80240Eb5d7E05d3F250cF000eEc0891d00b51CC'
+// TODO: revert this
+// export const ifoPoolV1Contract = '0x1B2A2f6ed4A1401E8C73B4c2B6172455ce2f78E8'
+// export const cakeVaultAddress = '0xa80240Eb5d7E05d3F250cF000eEc0891d00b51CC'
+export const ifoPoolV1Contract = '0x9a438C8bB7Ee79748c9143858CEa013572cc7e96'
+export const cakeVaultAddress = '0xB36580e6a34A08cb336cca511f8A29F239EA96B6'
 
 const getCakeVaultContract = (signer?: Signer | Provider) => {
   const signerOrProvider = signer ?? simpleRpcProvider
@@ -33,6 +36,7 @@ const fetchVaultUserV1 = async (account: string) => {
       cakeAtLastUserAction: new BigNumber(userContractResponse.cakeAtLastUserAction.toString()).toJSON(),
     }
   } catch (error) {
+    console.log('error', error)
     return {
       isLoading: true,
       userShares: null,

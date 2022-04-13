@@ -24,7 +24,7 @@ export const mainnetTokens = defineTokens({
   bnb: new Token(MAINNET, '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', 18, 'BNB', 'BNB', 'https://www.binance.com/'),
   cake: new Token(
     MAINNET,
-    '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
+    '0x30643DF62Db08a607Df1eB69147C290cF97696b5',
     18,
     'CAKE',
     'PancakeSwap Token',
@@ -213,7 +213,7 @@ export const mainnetTokens = defineTokens({
   ),
   syrup: new Token(
     MAINNET,
-    '0x009cF7bC57584b7998236eff51b98A168DceA9B0',
+    '0x335cCCb67e10F98b2A4a3B116f92D4D95a1e1535',
     18,
     'SYRUP',
     'SyrupBar Token',
@@ -2045,6 +2045,14 @@ export const mainnetTokens = defineTokens({
   ),
   pex: new Token(MAINNET, '0x6a0b66710567b6beb81A71F7e9466450a91a384b', 18, 'PEX', 'PearDAO', 'https://peardao.io/'),
   yel: new Token(MAINNET, '0xD3b71117E6C1558c1553305b44988cd944e97300', 18, 'YEL', 'YEL', 'https://yel.finance/'),
+  tinc: new Token(
+    MAINNET,
+    '0x05aD6E30A855BE07AfA57e08a4f30d00810a402e',
+    18,
+    'TINC',
+    'Tiny Coin',
+    'https://tinyworlds.io/',
+  ),
 } as const)
 
 export const testnetTokens = defineTokens({

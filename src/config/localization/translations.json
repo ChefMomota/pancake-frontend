@@ -1586,7 +1586,7 @@
   "Preparing": "Preparing",
   "Perpetual": "Perpetual",
   "Stake CAKE": "Stake CAKE",
-  "Stake, Earn, IFO – All in one!": "Stake, Earn, IFO – All in one!",
+  "Stake, Earn – And more!": "Stake, Earn – And more!",
   "Flexible": "Flexible",
   "Locked": "Locked",
   "I acknowledge that:": "I acknowledge that:",
@@ -1626,7 +1626,7 @@
   "%amount% Burned": "%amount% Burned",
   "Convert to Lock": "Convert to Lock",
   "Lock staking offers higher APY while providing other benefits.": "Lock staking offers higher APY while providing other benefits.",
-  "Add duration": "Add duration",
+  "Add": "Add",
   "Week": "Week",
   "Total lock duration exceeds 52 weeks": "Total lock duration exceeds 52 weeks",
   "Extend": "Extend",
@@ -1637,7 +1637,7 @@
   "Add CAKE to lock": "Add CAKE to lock",
   "CAKE locked": "CAKE locked",
   "Unlocks In": "Unlocks In",
-  "Initial Lock Duration": "Initial Lock Duration",
+  "Lock Duration": "Lock Duration",
   "After burning": "After burning",
   "Your yield will be boosted based on the total lock duration of your current fixed term staking position.": "Your yield will be boosted based on the total lock duration of your current fixed term staking position.",
   "Renew and extend your lock to keep similar benefits.": "Renew and extend your lock to keep similar benefits.",
@@ -1658,5 +1658,8 @@
   "300 Mobox Avatars NFT + 300 PancakeSwap newly designed NFT to the top 100 traders in each of the three teams.": "300 Mobox Avatars NFT + 300 PancakeSwap newly designed NFT to the top 100 traders in each of the three teams.",
   "500 Mobox mystery boxes to the top 500 traders ranked by the MBOX trading volume.": "500 Mobox mystery boxes to the top 500 traders ranked by the MBOX trading volume.",
   "Added by user": "Added by user",
-  "Due to an ongoing issue with Snapshot, if you only held $CAKE in other syrup pools, voting power will not be able to calculate correctly.": "Due to an ongoing issue with Snapshot, if you only held $CAKE in other syrup pools, voting power will not be able to calculate correctly."
+  "Due to an ongoing issue with Snapshot, if you only held $CAKE in other syrup pools, voting power will not be able to calculate correctly.": "Due to an ongoing issue with Snapshot, if you only held $CAKE in other syrup pools, voting power will not be able to calculate correctly.",
+  "Lock": "Lock",
+  "The lock period has ended. Convert to flexible staking or renew your position to start a new lock staking.": "The lock period has ended. Convert to flexible staking or renew your position to start a new lock staking.",
+  "The lock period has ended. To avoid more rewards being burned, convert to flexible staking or renew your position to start a new lock staking.": "The lock period has ended. To avoid more rewards being burned, convert to flexible staking or renew your position to start a new lock staking."
 }

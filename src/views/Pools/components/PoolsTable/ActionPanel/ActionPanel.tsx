@@ -375,10 +375,10 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, userDataLoaded
         </span>
       </InfoSection>
       <ActionContainer>
-        {isMobile && vaultKey && vaultPosition === VaultPosition.None && (
-          <CakeVaultApr pool={pool} userData={vaultPool.userData} vaultPosition={vaultPosition} />
-        )}
         <Box width="100%">
+          {isMobile && vaultKey && vaultPosition === VaultPosition.None && (
+            <CakeVaultApr pool={pool} userData={vaultPool.userData} vaultPosition={vaultPosition} />
+          )}
           {pool.vaultKey && (
             <VaultPositionTagWithLabel
               userData={vaultPool.userData}

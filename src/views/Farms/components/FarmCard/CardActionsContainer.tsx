@@ -64,6 +64,7 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
   return (
     <Action>
       <Flex>
+        <div>{t('Hello')}</div>
         <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
           CAKE
         </Text>

@@ -43,6 +43,16 @@ const farms: SerializedFarmConfig[] = [
   },
   //    * V3 by order of release (some may be out of PID order due to multiplier boost)
   {
+    pid: 101,
+    lpSymbol: 'MIX-BUSD LP',
+    lpAddresses: {
+      97: '',
+      56: '0x7618fdAb208aE23690dadD3aa4a42a442313d24E',
+    },
+    token: serializedTokens.MIX,
+    quoteToken: serializedTokens.busd,
+  },
+  {
     pid: 100,
     lpSymbol: 'METIS-BNB LP',
     lpAddresses: {
@@ -73,6 +83,7 @@ const farms: SerializedFarmConfig[] = [
     },
     token: serializedTokens.hotcross,
     quoteToken: serializedTokens.wbnb,
+    auctionHostingStartSeconds: 1653649200,
   },
   {
     pid: 94,
@@ -85,6 +96,7 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.wzrd,
     quoteToken: serializedTokens.busd,
     isCommunity: true,
+    auctionHostingStartSeconds: 1653649200,
   },
   {
     pid: 98,
@@ -116,6 +128,7 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens['8pay'],
     quoteToken: serializedTokens.busd,
     isCommunity: true,
+    auctionHostingStartSeconds: 1653649200,
   },
   {
     pid: 93,

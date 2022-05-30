@@ -9,7 +9,7 @@ const ifos: Ifo[] = [
   {
     id: 'test',
     vestingTitle: 'Hello World',
-    address: '0xC9993dbb58f0558c4A3DE163Eb17b37e1187FE03',
+    address: '0x2eFA9f6aec091e1A67C9eF6d568E7dBBb8b63a2f',
     isActive: true,
     name: 'TEST',
     poolBasic: {

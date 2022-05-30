@@ -5,7 +5,7 @@ import { ifosConfig } from 'config/constants'
 import { fetchUserWalletIfoData, VestingData } from './fetchUserWalletIfoData'
 
 // Filter Ifo when isActive = true
-const allVestingIfo: Ifo[] = ifosConfig.filter((ifo) => ifo.version >= 3.2 && ifo.vestingTitle && !ifo.isActive)
+const allVestingIfo: Ifo[] = ifosConfig.filter((ifo) => ifo.version >= 3.2 && ifo.vestingTitle)
 
 export interface VestingDataState {
   data: VestingData[]

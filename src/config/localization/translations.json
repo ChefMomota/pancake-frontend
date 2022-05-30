@@ -1709,7 +1709,6 @@
   "Circulating Supply": "Circulating Supply",
   "Max Supply": "Max Supply",
   "Prizes will be announced and available for claiming at ~": "Prizes will be announced and available for claiming at ~",
-  "Follow Update": "Follow Update",
   "Release rate": "Release rate",
   "%releaseRate% per second": "%releaseRate% per second",
   "Fully released date": "Fully released date",
@@ -1724,6 +1723,6 @@
   "Received": "Received",
   "Claimable": "Claimable",
   "Remaining": "Remaining",
-  "Calculating prizes": "Calculating prizes"
+  "Calculating prizes": "Calculating prizes",
   "Follow Update": "Follow Update"
 }

@@ -9,7 +9,12 @@ import {
 } from 'state/types'
 import { resetUserState } from '../global/actions'
 import { fetchPotteryFinishedRound } from './fetchPotteryRound'
-import { fetchLastVaultAddress, fetchPublicPotteryValue, fetchTotalLockedValue } from './fetchPottery'
+import {
+  fetchLastVaultAddress,
+  fetchPublicPotteryValue,
+  fetchTotalLockedValue,
+  fetchLatestRoundId,
+} from './fetchPottery'
 import {
   fetchPotterysAllowance,
   fetchVaultUserData,
@@ -28,6 +33,7 @@ const initialState: PotteryState = Object.freeze({
     lockStartTime: '',
     totalLockedValue: null,
     maxTotalDeposit: null,
+    latestRoundId: '',
   },
   userData: {
     isLoading: true,
@@ -60,11 +66,12 @@ export const fetchPublicPotteryDataAsync = createAsyncThunk<SerializedPotteryPub
     const state = getState()
     const potteryVaultAddress = (state as AppState).pottery.lastVaultAddress
 
-    const [publicPotteryData, totalLocedValue] = await Promise.all([
+    const [publicPotteryData, totalLockedValue, latestRoundId] = await Promise.all([
       fetchPublicPotteryValue(potteryVaultAddress),
       fetchTotalLockedValue(potteryVaultAddress),
+      fetchLatestRoundId(),
     ])
-    return { ...publicPotteryData, ...totalLocedValue }
+    return { ...publicPotteryData, ...totalLockedValue, ...latestRoundId }
   },
 )
 

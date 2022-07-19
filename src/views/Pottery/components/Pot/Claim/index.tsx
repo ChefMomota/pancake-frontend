@@ -6,9 +6,10 @@ import { usePotteryData } from 'state/pottery/hook'
 import { calculateCakeAmount } from 'views/Pottery/helpers'
 import BigNumber from 'bignumber.js'
 import { BIG_ONE } from 'utils/bigNumber'
+import { SubgraphHealthIndicator } from 'components/SubgraphHealthIndicator'
 import YourDeposit from '../YourDeposit'
 import WalletNotConnected from './WalletNotConnected'
-import AvailableWitdraw from './AvailableWitdraw'
+import AvailableWithdraw from './AvailableWithdraw'
 import PrizeToBeClaimed from './PrizeToBeClaimed'
 import CardFooter from './CardFooter'
 
@@ -39,11 +40,12 @@ const Claim: React.FC = () => {
       {account ? (
         <Container>
           <GreyCard>
+            <SubgraphHealthIndicator inline subgraphName="chef-huan/pottery" />
             <Flex justifyContent="space-between" mb="20px">
               <YourDeposit depositBalance={allDeposit} />
             </Flex>
             {userData.withdrawAbleData.map((data) => (
-              <AvailableWitdraw key={data.id} withdrawData={data} />
+              <AvailableWithdraw key={data.id} withdrawData={data} />
             ))}
             <PrizeToBeClaimed userData={userData} />
           </GreyCard>

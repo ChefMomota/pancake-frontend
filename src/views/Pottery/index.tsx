@@ -37,7 +37,7 @@ const Pottery: React.FC = () => {
       {createPortal(
         <>
           <ScrollToTopButton />
-          <SubgraphHealthIndicator subgraphName="pancakeswap/pottery" />
+          <SubgraphHealthIndicator subgraphName="chef-huan/pottery" />
         </>,
         document.body,
       )}

@@ -40,7 +40,7 @@ const Claim: React.FC = () => {
       {account ? (
         <Container>
           <GreyCard>
-            <SubgraphHealthIndicator inline subgraphName="pancakeswap/pottery" />
+            <SubgraphHealthIndicator inline subgraphName="chef-huan/pottery" />
             <Flex justifyContent="space-between" mb="20px">
               <YourDeposit depositBalance={allDeposit} />
             </Flex>

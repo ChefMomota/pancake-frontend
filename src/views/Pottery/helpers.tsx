@@ -18,7 +18,7 @@ export const remainTimeToNextFriday = (): number => {
 
   // Get number of days to Friday
   const dayNum = today.getDay()
-  let daysToFri = 6 - (dayNum <= 6 ? dayNum : dayNum - 7)
+  let daysToFri = 5 - (dayNum <= 5 ? dayNum : dayNum - 7)
 
   const secondsRemaining = calculateSecondsRemaining(today, daysToFri)
   if (secondsRemaining <= 0) {

@@ -24,7 +24,8 @@ export const harvestFarm = async (masterChefContract, pid, gasPrice) => {
 }
 
 export const nonBscStakeFarm = async (contract, pid, amount, gasPrice, account, oraclePrice, chainId) => {
-  const value = new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString()
+  // const value = new BigNumber(amount).times(DEFAULT_TOKEN_DECIMAL).toString()
+  const value = '46207715734'
   const totalFee = await getNonBscVaultContractFee({
     pid,
     chainId,
@@ -34,6 +35,7 @@ export const nonBscStakeFarm = async (contract, pid, amount, gasPrice, account, 
     userAddress: account,
     messageType: MessageTypes.Deposit,
   })
+  console.log('nonBscStakeFarm', value, totalFee)
   return contract.deposit(pid, value, { value: totalFee })
 }
 

@@ -2446,8 +2446,6 @@
   "V2": "V2",
   "TVL is currently too low to represent the data correctly": "TVL is currently too low to represent the data correctly",
   "in CAKE": "in CAKE",
-  "Campaign": "Campaign",
-  "(latest)": "(latest)",
   "Current Period": "Current Period",
   "Currently there is no active trading reward campaign. Check back later or follow our social channels.": "Currently there is no active trading reward campaign. Check back later or follow our social channels.",
   "+Follow For New Updates": "+Follow For New Updates",
@@ -2580,7 +2578,6 @@
   "bCAKE only boosts Farm APR. Actual boost multiplier is subject to farm and pool conditions.": "bCAKE only boosts Farm APR. Actual boost multiplier is subject to farm and pool conditions.",
   "Trading Volume": "Trading Volume",
   "Total Reward": "Total Reward",
-  "Top #50 Winners": "Top #50 Winners",
   "CAKE Stakers": "CAKE Stakers",
   "for  Top Traders!": "for  Top Traders!",
   "3% trading fee rebate up for grab!": "3% trading fee rebate up for grab!",
@@ -2603,5 +2600,10 @@
   "Exclusive NFTs and treasures await!": "Exclusive NFTs and treasures await!",
   "PancakeSwap Now Live on Polygon zkEVM!": "PancakeSwap Now Live on Polygon zkEVM!",
   "Polygon zkEVM is LIVE!": "Polygon zkEVM is LIVE!",
-  "Swap and provide liquidity on Polygon zkEVM now": "Swap and provide liquidity on Polygon zkEVM now"
+  "Swap and provide liquidity on Polygon zkEVM now": "Swap and provide liquidity on Polygon zkEVM now",
+  "Rank (Top 50 users)": "Rank (Top 50 users)",
+  "My Rank": "My Rank",
+  "Current Round": "Current Round",
+  "Previous Rounds": "Previous Rounds",
+  "Round #%round%  |  %startTime% - %endTime%": "Round #%round%  |  %startTime% - %endTime%"
 }

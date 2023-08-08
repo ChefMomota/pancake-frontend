@@ -17,6 +17,8 @@ const liquidStaking: LiquidStakingList[] = [
     shouldCheckApproval: true,
     approveToken: WETH9[ChainId.ETHEREUM],
     aprUrl: 'https://www.binance.com/bapi/earn/v1/public/pos/cftoken/project/getPurchasableProject',
+    stakingMethodArgs: ['masterChefAddress'],
+    stakingOverrides: ['value'],
     exchangeRateMultiCall: [
       {
         abi: wbethEthABI,

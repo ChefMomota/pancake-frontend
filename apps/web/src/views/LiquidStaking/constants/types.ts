@@ -30,6 +30,8 @@ export interface LiquidStakingList {
   contract: Address
   token0: Token | NativeToken
   token1: Token | NativeToken
+  stakingMethodArgs: string[]
+  stakingOverrides: string[]
   aprUrl: string
   abi: Abi
   approveToken: Token

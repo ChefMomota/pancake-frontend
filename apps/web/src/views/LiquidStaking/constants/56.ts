@@ -19,6 +19,8 @@ const liquidStaking: LiquidStakingList[] = [
     shouldCheckApproval: true,
     approveToken: WETH9[ChainId.BSC],
     aprUrl: 'https://www.binance.com/bapi/earn/v1/public/pos/cftoken/project/getPurchasableProject',
+    stakingMethodArgs: ['masterChefAddress'],
+    stakingOverrides: ['value'],
     exchangeRateMultiCall: [
       {
         abi: wbethBscABI,
@@ -39,6 +41,8 @@ const liquidStaking: LiquidStakingList[] = [
     shouldCheckApproval: false,
     approveToken: null,
     aprUrl: 'https://www.binance.com/bapi/earn/v1/public/pos/cftoken/project/getPurchasableProject',
+    stakingMethodArgs: [],
+    stakingOverrides: ['value'],
     exchangeRateMultiCall: [
       {
         abi: snBnbABI,

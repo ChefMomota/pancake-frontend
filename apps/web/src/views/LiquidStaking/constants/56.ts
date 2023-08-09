@@ -19,8 +19,8 @@ const liquidStaking: LiquidStakingList[] = [
     shouldCheckApproval: true,
     approveToken: WETH9[ChainId.BSC],
     aprUrl: 'https://www.binance.com/bapi/earn/v1/public/pos/cftoken/project/getPurchasableProject',
-    stakingMethodArgs: ['masterChefAddress'],
-    stakingOverrides: ['value'],
+    stakingMethodArgs: ['convertedStakeAmount', 'masterChefAddress'],
+    stakingOverrides: [],
     exchangeRateMultiCall: [
       {
         abi: wbethBscABI,
@@ -28,8 +28,6 @@ const liquidStaking: LiquidStakingList[] = [
         functionName: FunctionName.exchangeRate,
       },
     ],
-    stakingMethodArgs: ['convertedStakeAmount', 'masterChefAddress'],
-    stakingOverrides: [],
     FAQs: EthWbethFaq(),
   },
   {
@@ -51,8 +49,6 @@ const liquidStaking: LiquidStakingList[] = [
         args: [1000000000000000000], // 1 SnBNB
       },
     ],
-    stakingMethodArgs: [],
-    stakingOverrides: ['value'],
     FAQs: BnbSnbnbFaq(),
   },
 ]

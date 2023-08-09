@@ -26,8 +26,6 @@ const liquidStaking: LiquidStakingList[] = [
         functionName: FunctionName.exchangeRate,
       },
     ],
-    stakingMethodArgs: ['masterChefAddress'],
-    stakingOverrides: ['value'],
     FAQs: EthWbethFaq(),
   },
 ]

@@ -14,7 +14,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { Field } from 'state/swap/actions'
 import { useSwapCallArguments } from '../hooks/useSwapCallArguments'
 import { useSwapCallback } from '../hooks/useSwapCallback'
-import { MMRfqTrade, TradeWithMM } from '../types'
+import { MMRfqTrade, TradeWithMM, RFQResponse } from '../types'
 import ConfirmSwapModal from '../../V3Swap/containers/ConfirmSwapModal'
 
 const SettingsModalWithCustomDismiss = withCustomOnDismiss(SettingsModal)
@@ -67,7 +67,7 @@ export function MMSwapCommitButton({
   // @ts-ignore
   const swapCalls = useSwapCallArguments(
     rfqTrade.trade as TradeWithMM<Currency, Currency, TradeType>,
-    rfqTrade.rfq as string,
+    rfqTrade.rfq as RFQResponse['message'],
     recipient,
   )
 

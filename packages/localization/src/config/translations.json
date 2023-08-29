@@ -2669,5 +2669,9 @@
   "Linea is LIVE!": "Linea is LIVE!",
   "PancakeSwap Now Live on Linea!": "PancakeSwap Now Live on Linea!",
   "Swap and Provide Liquidity on Linea now": "Swap and Provide Liquidity on Linea now",
-  "day": "day"
+  "day": "day",
+  "Proceed in your wallet": "Proceed in your wallet",
+  "Why approving this?": "Why approving this?",
+  "Allow %symbol% to be used for swapping": "Allow %symbol% to be used for swapping",
+  "Enable spending %symbol%": "Enable spending %symbol%"
 }

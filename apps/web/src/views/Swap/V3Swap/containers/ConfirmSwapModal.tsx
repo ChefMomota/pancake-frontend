@@ -24,6 +24,7 @@ import { useUserSlippage } from '@pancakeswap/utils/user'
 import { useSwapState } from 'state/swap/hooks'
 import { ApprovalState } from 'hooks/useApproveCallback'
 import AddToWalletButton, { AddToWalletTextOptions } from 'components/AddToWallet/AddToWalletButton'
+import { TradeWithMM } from 'views/Swap/MMLinkPools/types'
 import { ConfirmModalState, PendingConfirmModalState } from '../types'
 
 import ConfirmSwapModalContainer from '../../components/ConfirmSwapModalContainer'
@@ -32,8 +33,10 @@ import { TransactionConfirmSwapContent } from '../components'
 import ApproveStepFlow from './ApproveStepFlow'
 
 interface ConfirmSwapModalProps {
-  trade?: SmartRouterTrade<TradeType>
-  originalTrade?: SmartRouterTrade<TradeType>
+  isMM?: boolean
+  isRFQReady?: boolean
+  trade?: SmartRouterTrade<TradeType> | TradeWithMM<Currency, Currency, TradeType>
+  originalTrade?: SmartRouterTrade<TradeType> | TradeWithMM<Currency, Currency, TradeType>
   currencyBalances: { [field in Field]?: CurrencyAmount<Currency> }
   attemptingTxn: boolean
   txHash?: string
@@ -136,9 +139,11 @@ const useConfirmModalState = ({ chainId, txHash, approval, onConfirm, approveCal
 }
 
 const ConfirmSwapModal = memo<InjectedModalProps & ConfirmSwapModalProps>(function ConfirmSwapModalComp({
+  isMM,
   trade,
   txHash,
   approval,
+  isRFQReady,
   attemptingTxn,
   originalTrade,
   showApproveFlow,
@@ -170,8 +175,8 @@ const ConfirmSwapModal = memo<InjectedModalProps & ConfirmSwapModalProps>(functi
     if (customOnDismiss) {
       customOnDismiss?.()
     }
-    onCancel?.()
     onDismiss?.()
+    onCancel?.()
   }, [customOnDismiss, onCancel, onDismiss])
 
   const topModal = useCallback(() => {
@@ -196,9 +201,9 @@ const ConfirmSwapModal = memo<InjectedModalProps & ConfirmSwapModalProps>(functi
     if (swapErrorMessage) {
       return (
         <SwapTransactionErrorContent
-          openSettingModal={openSettingModal}
-          onDismiss={handleDismiss}
           message={swapErrorMessage}
+          onDismiss={handleDismiss}
+          openSettingModal={openSettingModal}
         />
       )
     }
@@ -255,8 +260,10 @@ const ConfirmSwapModal = memo<InjectedModalProps & ConfirmSwapModalProps>(functi
 
     return (
       <TransactionConfirmSwapContent
+        isMM={isMM}
         trade={trade}
         recipient={recipient}
+        isRFQReady={isRFQReady}
         originalTrade={originalTrade}
         allowedSlippage={allowedSlippage}
         currencyBalances={currencyBalances}
@@ -265,8 +272,10 @@ const ConfirmSwapModal = memo<InjectedModalProps & ConfirmSwapModalProps>(functi
       />
     )
   }, [
+    isMM,
     trade,
     txHash,
+    isRFQReady,
     originalTrade,
     attemptingTxn,
     currencyBalances,

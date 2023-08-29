@@ -19,7 +19,7 @@ export function useMMSwapContract() {
 // computes price breakdown for the trade
 export function computeTradePriceBreakdown(trade?: TradeWithMM<Currency, Currency, TradeType> | null): {
   priceImpactWithoutFee: Percent | undefined
-  realizedLPFee: CurrencyAmount<Currency> | undefined | null
+  lpFeeAmount: CurrencyAmount<Currency> | undefined | null
 } {
   // for each hop in our trade, take away the x*y=k price impact from 0.3% fees
   // e.g. for 3 tokens/2 hops: 1 - ((1 - .03) * (1-.03))
@@ -53,7 +53,7 @@ export function computeTradePriceBreakdown(trade?: TradeWithMM<Currency, Currenc
     trade &&
     (isStablePair ? trade.inputAmount.multiply(stableFeeRate) : trade.inputAmount.multiply(feeRate))
 
-  return { priceImpactWithoutFee: priceImpactWithoutFeePercent, realizedLPFee: realizedLPFeeAmount }
+  return { priceImpactWithoutFee: priceImpactWithoutFeePercent, lpFeeAmount: realizedLPFeeAmount }
 }
 
 // computes the minimum amount out and maximum amount in for a trade given a user specified allowed slippage in bips

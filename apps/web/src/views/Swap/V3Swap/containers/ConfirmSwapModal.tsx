@@ -297,6 +297,7 @@ const ConfirmSwapModal = memo<InjectedModalProps & ConfirmSwapModalProps>(functi
 
   return (
     <ConfirmSwapModalContainer
+      minHeight="410px"
       hideTitleAndBackground={confirmModalState !== ConfirmModalState.REVIEWING}
       handleDismiss={handleDismiss}
     >
@@ -304,9 +305,7 @@ const ConfirmSwapModal = memo<InjectedModalProps & ConfirmSwapModalProps>(functi
       {(confirmModalState === ConfirmModalState.APPROVING_TOKEN ||
         confirmModalState === ConfirmModalState.APPROVE_PENDING ||
         attemptingTxn) &&
-        !swapErrorMessage && (
-          <ApproveStepFlow confirmModalState={confirmModalState} hideStepIndicators={pendingModalSteps.length === 1} />
-        )}
+        !swapErrorMessage && <ApproveStepFlow confirmModalState={confirmModalState} />}
     </ConfirmSwapModalContainer>
   )
 })

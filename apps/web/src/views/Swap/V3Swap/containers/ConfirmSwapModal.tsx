@@ -68,6 +68,7 @@ const useConfirmModalState = ({ chainId, txHash, approval, onConfirm, approveCal
   const provider = usePublicClient({ chainId })
   const [confirmModalState, setConfirmModalState] = useState<ConfirmModalState>(ConfirmModalState.REVIEWING)
   const [pendingModalSteps, setPendingModalSteps] = useState<PendingConfirmModalState[]>([])
+  const [previouslyPending, setPreviouslyPending] = useState<boolean>(false)
 
   const generateRequiredSteps = useCallback(() => {
     const steps: PendingConfirmModalState[] = []
@@ -117,11 +118,29 @@ const useConfirmModalState = ({ chainId, txHash, approval, onConfirm, approveCal
     async (hash) => {
       const receipt: any = await provider.waitForTransactionReceipt({ hash })
       if (receipt.status === 'success') {
+        setPreviouslyPending(false)
         performStep(ConfirmModalState.COMPLETED)
       }
     },
     [performStep, provider],
   )
+
+  useEffect(() => {
+    if (confirmModalState === ConfirmModalState.APPROVE_PENDING && approval === ApprovalState.PENDING) {
+      setPreviouslyPending(true)
+    }
+  }, [approval, confirmModalState])
+
+  useEffect(() => {
+    if (
+      confirmModalState === ConfirmModalState.APPROVE_PENDING &&
+      previouslyPending &&
+      approval === ApprovalState.NOT_APPROVED
+    ) {
+      setConfirmModalState(ConfirmModalState.REVIEWING)
+      setPreviouslyPending(false)
+    }
+  }, [approval, confirmModalState, previouslyPending])
 
   useEffect(() => {
     if (isInApprovalPhase(confirmModalState) && approval === ApprovalState.APPROVED) {
